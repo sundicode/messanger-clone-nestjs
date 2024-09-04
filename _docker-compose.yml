@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build: ./f
+    ports: -3000:3000
+  backend:
+    build: ./b
+    ports: -3001:3001
+    environment:
+      DB_URL: mongo://db/vidly
+  database:
+    image: mongo:4.0-xenial
+    ports: -27017:27017
+
+    volumes:
+      - vidly:/data/db
+volumes: vidly
